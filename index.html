@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | [Replace with game title]</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="TemplateData/UnityProgress.js"></script>
+    <script src="Build/UnityLoader.js"></script>
+    <script>
+      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/[Replace with Unity file name].json", {onProgress: UnityProgress});
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+    <style>
+    body {
+      background-image: url('background.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      color: rgb(210, 215, 220);
+      font-size: 24px;
+      margin: 0;
+      padding: 0;
+      font-family: "Fredoka", cursive;
+    }
+    
+    #main-title {
+      text-align: center;
+      font-size: 64px;
+      color: rgb(248, 248, 248);
+      text-shadow: -2px -2px 0 #FF5C5C, 2px -2px 0 #FF5C5C, -2px 2px 0 #FF5C5C, 2px 2px 0 #FF5C5C,
+             0px 2px 0 #FF5C5C, 2px 0px 0 #FF5C5C, 0px -2px 0 #FF5C5C, -2px 0px 0 #FF5C5C;
+      margin-bottom: 0.3em; /* reduced bottom space */
+    }
+    
+    p {
+      text-align: center;
+      color: rgb(248, 248, 248);
+      font-size: 24px;
+      font-weight: bold;
+      font-style: italic;
+      margin: 0.3em 0; /* reduced top and bottom space */
+    }
+    
+    .content-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px;
+      padding: 0 20px;
+      flex-wrap: wrap;
+      margin-top: 2em; /* ⬅ add extra spacing below the last <p> */
+    }
+    
+    .webgl-balanced-container {
+      display: flex;
+      align-items: flex-start;
+      gap: 40px;
+      width: 100%;           /* take full width */
+      justify-content: space-between; /* push left and right items to edges */
+    }
+    
+    .instructions,
+    .spacer {
+      flex: 0 0 300px;   /* fixed base width */
+      max-width: 400px;  /* cap size */
+    }
+    
+    .instructions {
+      text-align: left;  /* keep text hugging left */
+    }
+    
+    .webgl-content {
+      flex: 0 0 auto;    /* don’t stretch */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .subtitle {
+      color: rgb(248, 248, 248);
+      text-shadow: -2px -2px 0 #FF5C5C, 2px -2px 0 #FF5C5C, -2px 2px 0 #FF5C5C, 2px 2px 0 #FF5C5C,
+                   0px 2px 0 #FF5C5C, 2px 0px 0 #FF5C5C, 0px -2px 0 #FF5C5C, -2px 0px 0 #FF5C5C;
+      font-size: 56px;
+      margin-bottom: 0.5em;
+      margin-top: 0.1em;
+    }
+    
+    ol {
+      padding-left: 1.2em;
+    }
+    
+    li {
+      margin-bottom: 16px;
+      font-weight: bold;
+      font-style: italic;
+      font-size: 20px;
+    }
+    
+    /* Center Unity content */
+    .webgl-wrapper {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 400px;
+    }
+    
+    /* Adjust Unity container size */
+    #unityContainer {
+      width: 640px;
+      height: 480px;
+      background: #000; /* fallback */
+    }
+    
+    .footer {
+      margin-top: 10px;
+      text-align: center;
+      color: #fff;
+    }      
+    </style>
+  </head>
+  <body>
+  <h1 id="main-title">[Replace with game title]</h1>
+  <p>This is [Replace with ninja's name] project from Codeninjas Hacienda Heights</p>
+  <p>[Replace with description of the game.]</p>
+
+  <div class="content-container">
+    <div class="webgl-balanced-container">
+      <div class="instructions">
+        <h2 class="subtitle">How To Play</h2>
+        <ol>
+          <li>[Replace with instruction 1]</li>
+          <li>[Replace with instruction 2]</li>
+          <li>[Replace with instruction 3]</li>
+        </ol>
+      </div>
+  
+      <div class="webgl-content">
+        <div id="unityContainer"></div>
+        <div class="footer">
+          <div class="webgl-logo"></div>
+          <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
+          <div class="title">[Replace with game title]</div>
+        </div>
+      </div>
+  
+      <div class="spacer"></div>
+    </div>
+  </div>    
+  </body>
+</html>
