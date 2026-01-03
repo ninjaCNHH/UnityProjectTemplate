@@ -11,6 +11,7 @@
     <script>
       var unityInstance = UnityLoader.instantiate("unityContainer", "Build/[Replace with Unity file name].json", {onProgress: UnityProgress});
     </script>
+    <link rel="stylesheet" href="TemplateData/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
@@ -56,13 +57,16 @@
     }
     
     .webgl-balanced-container {
-      display: flex;
-      align-items: flex-start;
-      gap: 40px;
-      width: 100%;           /* take full width */
-      justify-content: space-between; /* push left and right items to edges */
+      display: grid;
+      grid-template-columns: 300px 1fr 300px;
+      align-items: start;
+      justify-items: stretch;
+      width: 100%;
+      min-height: 480px; /* ⬅ matches Unity height */
+      padding: 40px;
+      box-sizing: border-box;
     }
-    
+      
     .instructions,
     .spacer {
       flex: 0 0 300px;   /* fixed base width */
@@ -71,6 +75,8 @@
     
     .instructions {
       text-align: left;  /* keep text hugging left */
+      align-self: flex-start;
+      grid-column: 1;
     }
     
     .webgl-content {
@@ -117,40 +123,109 @@
       background: #000; /* fallback */
     }
     
+    .unity-section {
+      width: 100%;
+      display: block;
+      clear: both;
+      margin-top: 40px;
+    }
+    
     .footer {
       margin-top: 10px;
       text-align: center;
       color: #fff;
     }      
+
+    /* Header always occupies its own space */
+    .page-header {
+      text-align: center;
+      padding: 20px 20px 10px;
+      flex-shrink: 0;
+    }
+    
+    /* Force Unity section below header */
+    .main-content {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+      overflow-x: hidden;
+    }
+    
+    /* Prevent overlap in narrow windows */
+    @media (max-width: 900px) {
+      .webgl-balanced-container {
+        grid-template-columns: 1fr;
+      }
+    
+      .instructions,
+      .unity-frame,
+      .spacer {
+        grid-column: 1;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      .spacer {
+        display: none;
+      }
+    }
+
+    /* ✅ Unity hard containment */
+    .unity-frame {
+      width: 640px;
+      min-height: 480px;
+      position: relative;
+      flex-shrink: 0;
+      grid-column: 2;
+      margin: 0 auto;
+      align-self: center;
+    }
+    
+    /* Prevent Unity from overlapping siblings */
+    .unity-frame * {
+      box-sizing: border-box;
+    }
+      
+    .spacer {
+      grid-column: 3;
+    }     
     </style>
   </head>
   <body>
-  <h1 id="main-title">[Replace with game title]</h1>
-  <p>This is [Replace with ninja's name] project from Codeninjas Hacienda Heights</p>
-  <p>[Replace with description of the game.]</p>
+    <div class="page-header">
+      <h1 id="main-title">[Replace with game title]</h1>
+      <p>This is [Replace with ninja's name] project from Codeninjas Hacienda Heights</p>
+      <p>[Replace with description of the game.]</p>
+    </div>
 
-  <div class="content-container">
-    <div class="webgl-balanced-container">
-      <div class="instructions">
-        <h2 class="subtitle">How To Play</h2>
-        <ol>
-          <li>[Replace with instruction 1]</li>
-          <li>[Replace with instruction 2]</li>
-          <li>[Replace with instruction 3]</li>
-        </ol>
-      </div>
+    <div class="main-content">
+      <div class="unity-section">
+        <div class="webgl-balanced-container">
+          <div class="instructions">
+            <h2 class="subtitle">How To Play</h2>
+            <ol>
+              <li>[Replace with instruction 1]</li>
+              <li>[Replace with instruction 2]</li>
+              <li>[Replace with instruction 3]</li>
+            </ol>
+          </div>
+
+          <div class="unity-frame">
+            <div class="webgl-content">
+              <div id="unityContainer"></div>
+              <div class="footer">
+                <div class="webgl-logo"></div>
+                <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
+                <div class="title">[Replace with game title]</div>
+              </div>
+            </div>
+          </div>
   
-      <div class="webgl-content">
-        <div id="unityContainer"></div>
-        <div class="footer">
-          <div class="webgl-logo"></div>
-          <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
-          <div class="title">[Replace with game title]</div>
+          <div class="spacer"></div>
         </div>
       </div>
-  
-      <div class="spacer"></div>
-    </div>
-  </div>    
+    </div>    
   </body>
 </html>
